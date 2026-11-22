@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1170" viewBox="0 0 1920 1170" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">GAIN Core v3.2 architecture</title>
+  <desc id="diagram-description">Three levels show user input and the central Python terminal assistant, its Ollama and SQLite integrations, and three PDF tools connected to local PDF documents. Tool calls and results flow between the assistant and PDF tools.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="12" refY="7" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0 L14 7 L0 14 Z" fill="#183B2E"/>
+    </marker>
+    <marker id="arrow-start" markerWidth="14" markerHeight="14" refX="12" refY="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0 0 L14 7 L0 14 Z" fill="#183B2E"/>
+    </marker>
+    <style>
+      .title { font: 700 48px Georgia, "Times New Roman", serif; fill: #183B2E; }
+      .subtitle { font: 22px Arial, sans-serif; fill: #183B2E; }
+      .level { font: 700 18px Arial, sans-serif; letter-spacing: 2px; fill: #183B2E; }
+      .box-title { font: 700 28px Arial, sans-serif; fill: #183B2E; }
+      .box-title-light { font: 700 28px Arial, sans-serif; fill: #F7F4E9; }
+      .body { font: 21px Arial, sans-serif; fill: #183B2E; }
+      .body-light { font: 21px Arial, sans-serif; fill: #F7F4E9; }
+      .small { font: 18px Arial, sans-serif; fill: #183B2E; }
+      .small-light { font: 18px Arial, sans-serif; fill: #F7F4E9; }
+      .label { font: 700 16px Arial, sans-serif; letter-spacing: 1.5px; fill: #183B2E; }
+      .label-light { font: 700 16px Arial, sans-serif; letter-spacing: 1.5px; fill: #C6D89A; }
+      .card { fill: #F7F4E9; stroke: #183B2E; stroke-width: 3; }
+      .integration { fill: #E8ECD9; stroke: #183B2E; stroke-width: 3; }
+      .assistant { fill: #183B2E; stroke: #183B2E; stroke-width: 3; }
+      .connector { fill: none; stroke: #183B2E; stroke-width: 4; stroke-linecap: square; stroke-linejoin: miter; }
+      .accent-line { stroke: #6F8F45; stroke-width: 4; }
+      .scope { font: 18px Arial, sans-serif; fill: #183B2E; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1140" fill="#F7F4E9"/>
+
+  <text class="title" x="100" y="68">GAIN Core v3.2</text>
+  <text class="subtitle" x="100" y="105">Implemented local assistant and document workflow</text>
+  <line class="accent-line" x1="100" y1="130" x2="1820" y2="130"/>
+
+  <text class="level" x="100" y="170">01  USER INPUT AND PYTHON TERMINAL ASSISTANT</text>
+
+  <rect class="card" x="100" y="205" width="360" height="160" rx="18"/>
+  <text class="label" x="132" y="245">INPUT</text>
+  <text class="box-title" x="132" y="290">User in terminal</text>
+  <text class="small" x="132" y="328">Prompt or explicit command</text>
+
+  <rect class="assistant" x="650" y="195" width="620" height="180" rx="18"/>
+  <text class="label-light" x="690" y="238">PYTHON TERMINAL ASSISTANT</text>
+  <text class="box-title-light" x="690" y="282">GAIN Core</text>
+  <text class="body-light" x="690" y="318">chat_v3_2.py</text>
+  <text class="small-light" x="690" y="350">Runs local tools and returns their results</text>
+
+  <path class="connector" d="M460 285 H650" marker-end="url(#arrow)"/>
+  <text class="small" x="555" y="265" text-anchor="middle">Prompt</text>
+
+  <text class="level" x="100" y="420">02  LOCAL INTEGRATIONS</text>
+
+  <path class="connector" d="M800 375 V448 H445 V500" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <text class="small" x="650" y="480" text-anchor="middle">Model requests and responses</text>
+
+  <path class="connector" d="M1120 375 V448 H1475 V500" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <text class="small" x="1300" y="480" text-anchor="middle">remember / memories / forget &lt;id&gt;</text>
+
+  <rect class="integration" x="120" y="500" width="650" height="150" rx="18"/>
+  <text class="label" x="160" y="542">LOCAL MODEL</text>
+  <text class="box-title" x="160" y="582">Ollama model gain</text>
+  <text class="small" x="160" y="620">localhost:11434/api/chat</text>
+
+  <rect class="integration" x="1150" y="500" width="650" height="150" rx="18"/>
+  <text class="label" x="1190" y="542">EXPLICIT MEMORY</text>
+  <text class="box-title" x="1190" y="582">SQLite memory</text>
+  <text class="small" x="1190" y="620">~/GAIN/memory.db</text>
+
+  <text class="level" x="100" y="710">03  PDF TOOLS AND LOCAL DOCUMENTS</text>
+  <text class="small" x="1000" y="710">Tool calls and results return to the assistant</text>
+
+  <path class="connector" d="M960 375 V770"/>
+  <path class="connector" d="M350 770 H1570"/>
+  <path class="connector" d="M350 770 V800" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <path class="connector" d="M960 770 V800" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <path class="connector" d="M1570 770 V800" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+
+  <rect class="card" x="100" y="800" width="500" height="140" rx="18"/>
+  <text class="label" x="140" y="838">PDF DISCOVERY</text>
+  <text class="box-title" x="140" y="877">file_tools.py</text>
+  <text class="small" x="140" y="914">find_files(".pdf") in ~/Downloads</text>
+
+  <rect class="card" x="710" y="800" width="500" height="140" rx="18"/>
+  <text class="label" x="750" y="838">PAGE READING</text>
+  <text class="box-title" x="750" y="877">chat_v3_2.py</text>
+  <text class="small" x="750" y="914">read_pdf extracts selected pages</text>
+
+  <rect class="card" x="1320" y="800" width="500" height="140" rx="18"/>
+  <text class="label" x="1360" y="838">LEXICAL SEARCH</text>
+  <text class="box-title" x="1360" y="877">pdf_search.py</text>
+  <text class="small" x="1360" y="914">search_pdf_content finds text matches</text>
+
+  <rect class="integration" x="440" y="990" width="1040" height="105" rx="18"/>
+  <text class="label" x="490" y="1030">LOCAL PDF DOCUMENTS</text>
+  <text class="box-title" x="490" y="1072">~/Downloads/*.pdf</text>
+  <text class="small" x="1030" y="1072">Extractable text read with pypdf</text>
+
+  <path class="connector" d="M960 990 V965" marker-end="url(#arrow)"/>
+  <path class="connector" d="M350 965 H1570"/>
+  <path class="connector" d="M350 965 V940" marker-end="url(#arrow)"/>
+  <path class="connector" d="M960 965 V940" marker-end="url(#arrow)"/>
+  <path class="connector" d="M1570 965 V940" marker-end="url(#arrow)"/>
+
+  <line class="accent-line" x1="100" y1="1115" x2="1820" y2="1115"/>
+  <text class="scope" x="100" y="1150">GAIN Core only. Future personal-data connections and recommendations are not shown as implemented.</text>
+</svg>

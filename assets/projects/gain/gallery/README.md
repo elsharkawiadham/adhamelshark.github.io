@@ -1,0 +1,1 @@
+The supplied GAIN visuals are `terminal-startup.png` and `forest-workspace.png`. Their visible version and feature claims are not verified as part of GAIN Core v3.2; the portfolio labels this distinction. Add further project visuals here with descriptive alternative text in the portfolio.

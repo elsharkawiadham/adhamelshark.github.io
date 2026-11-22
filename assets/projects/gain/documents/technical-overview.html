@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GAIN Core Technical Overview</title>
+    <link rel="stylesheet" href="../../../../styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <main class="section-wrap section-block documentation-page" id="main">
+      <p class="eyebrow">GAIN portfolio evidence</p>
+      <h1>GAIN Core technical overview</h1>
+      <p class="lead">
+        A concise description of the implemented Python terminal prototype
+        in the GAIN repository’s <code>main</code> branch.
+      </p>
+
+      <h2>Scope</h2>
+      <p>
+        GAIN Core is experimental software, not a production service. This
+        overview describes <code>chat_v3_2.py</code> and its local tools.
+        GAIN Brain and other product concepts are outside this implementation.
+      </p>
+
+      <h2>Implemented flow</h2>
+      <ol>
+        <li>
+          <strong>Local model interaction.</strong> The terminal assistant
+          sends prompts to the Ollama API at
+          <code>http://localhost:11434/api/chat</code> using the local model
+          named <code>gain</code>. Ollama can return a tool call; Python runs
+          that local function and returns its result to the conversation.
+        </li>
+        <li>
+          <strong>Explicit memory.</strong> The commands
+          <code>remember</code>, <code>memories</code>, and
+          <code>forget &lt;id&gt;</code> manage records in
+          <code>~/GAIN/memory.db</code>. Saved memory content is read into
+          assistant context for later prompts.
+        </li>
+        <li>
+          <strong>PDF discovery.</strong>
+          <code>file_tools.find_files(".pdf")</code> lists PDF filenames in
+          <code>~/Downloads</code>.
+        </li>
+        <li>
+          <strong>Page-specific reading.</strong>
+          <code>chat_v3_2.read_pdf</code> uses <code>pypdf</code> to extract
+          selected, one-based pages. Each call is limited to three pages and
+          9,000 characters.
+        </li>
+        <li>
+          <strong>Lexical PDF search.</strong>
+          <code>pdf_search.search_pdf_content</code> searches extractable PDF
+          text and returns filenames, page numbers, excerpts, and scan-coverage
+          information.
+        </li>
+      </ol>
+      <p>
+        The assistant orchestrates these operations locally. PDF text is
+        document data, not a source of instructions.
+      </p>
+
+      <h2>Boundaries</h2>
+      <p>
+        Search is lexical, not semantic, and only extractable PDF text is
+        searchable. The Core does not implement OCR, persistent conversation
+        history, or production authentication. Future personal-data
+        connections and personalized recommendations remain ideas, not
+        implemented Core features.
+      </p>
+
+      <h2>Source references</h2>
+      <ul>
+        <li><a href="https://github.com/elsharkawiadham/GAIN">GAIN repository</a></li>
+        <li><a href="https://github.com/elsharkawiadham/GAIN/blob/main/chat_v3_2.py">chat_v3_2.py</a></li>
+        <li><a href="https://github.com/elsharkawiadham/GAIN/blob/main/file_tools.py">file_tools.py</a></li>
+        <li><a href="https://github.com/elsharkawiadham/GAIN/blob/main/pdf_search.py">pdf_search.py</a></li>
+        <li><a href="https://github.com/elsharkawiadham/GAIN/blob/main/docs/engineering/ARCHITECTURE.md">Engineering architecture source</a></li>
+        <li><a href="https://github.com/elsharkawiadham/GAIN/blob/main/docs/PROJECT_STATUS.md">Project status source</a></li>
+      </ul>
+
+      <p><a href="../../../../index.html#gain-title">Back to portfolio</a></p>
+    </main>
+  </body>
+</html>
